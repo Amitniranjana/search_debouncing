@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Searchbar Debouncing Project Suite
 
-## Getting Started
+This repository contains a small collection of interactive Next.js applications built using the `app` directory and modern React patterns. The intent is to demonstrate multiple frontend features, including webcam capture, calculator logic, and nested comment interactions.
 
-First, run the development server:
+## Projects Included
+
+### Camera / Webcam Application
+
+- File: `src/app/camera/page.tsx`
+- Uses `react-webcam` to render a live webcam feed in the browser.
+- Supports capturing a photo and displaying a preview immediately after capture.
+- Includes a retry workflow so users can retake the photo if needed.
+- Implements a hydration-safe render by delaying the webcam component until the client is mounted.
+
+### Calculator Application
+
+- File: `src/app/calculator/page.tsx`
+- Implements a simple calculator UI with digits and arithmetic operators.
+- Uses `mathjs` for expression evaluation and result calculation.
+- Stores input expression and output separately for clear user feedback.
+- Includes responsive button interactions and a focused visual layout.
+
+### Nested Comment Application
+
+- File: `src/app/comment/page.tsx`
+- Implements a basic comment system with nested reply support.
+- Allows users to add a top-level comment and reply to individual comments.
+- Uses local component state to manage comments, replies, and active reply forms.
+- Presents replies in a nested structure for clarity.
+
+### Search Application
+
+- File: `src/app/search/page.tsx`
+- Currently an empty placeholder file.
+- Intended as a future location for a debounced search bar or search-related feature.
+
+### Root Application
+
+- File: `src/app/page.tsx`
+- Contains the default landing page with a minimal welcome message.
+- Acts as the application entry point for the Next.js `app` router.
+
+## Running the Project
+
+To start the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000` in your browser to view the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Notes
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- This repository is built on Next.js with TypeScript support.
+- The app uses Tailwind CSS for styling and layout.
+- Additional project pages may be added under `src/app` as separate features.

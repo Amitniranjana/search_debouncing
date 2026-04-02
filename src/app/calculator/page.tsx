@@ -1,71 +1,57 @@
 "use client"
 import React, { useState } from 'react'
-
+import { evaluate } from 'mathjs';
 const Calculator = () => {
-    const [val ,setVal]=useState<string[] >([]);
-    const handleVal=(e)=>{
-          setVal((prev)=>[...prev , e.target.value]);
-          const [ans ,setAns]=useState("")
+    const buttons = [
+        ['1', '2', '3', '*'],
+        ['4', '5', '6', '/'],
+        ['7', '8', '9', '+'],
+        ['0', '=', '=', '-']
+    ]
+
+
+    const [val, setVal] = useState('');
+    const[output ,setOutput]=useState("")
+    function buttonHandler(btn:string){
+if(btn=='='){
+    const result=evaluate(val);
+    setOutput(result);
+    return   setVal(" ")
+}
+
+setVal((prev)=> prev + btn);
     }
 
 
-    const calculation =(e)=>{
-     {
-            val.map((value , ind)=>{
-                 <div key={ind}>
-                    val
-                </div>
-            })
-        }
-    }
+
     return (
-        <div className='h-screen flex flex-col justify-center items-center w-screen'>
-            Calculator
-            <div className='flex flex-col justify-center items-center h-2/4 w-2/4 bg-slate-600'>
+        <div className='flex flex-col justify-center items-center h-screen w-screen'>
+            <div className='flex flex-col justify-center items-center h-1/2 w-1/2 bg-slate-600'>
+                <div className='h-1/3 w-full '>
+                <div>
+    {output}
+</div>
+<input type="text" className='bg-white w-full h-full text-black text-right ' value={val}/>
 
-                <div className='h-1/3 bg-white w-full text-black '>
 
-                  <div className='w-full h-full bg-white text-black' >
-{val}
-                  </div>
                 </div>
-                <div className='h-2/3 w-full flex '>
-                    <div className='h-full w-2/3 flex flex-col '>
-                        <div className='flex justify-between' >
-                            <button onClick={handleVal} className='bg-blue-800 w-1/3 gap-1 rounded-xl p-1 m-2'
-                            value={"0"}
-                            id='0'>0</button>
-                            <button onClick={handleVal}  className='bg-blue-800 w-1/3 gap-1 rounded-xl p-1 m-2'
-                            value={'1'}
-                            id='1'>1</button>
-                            <button value={'3'} onClick={handleVal}  className='bg-blue-800 w-1/3 gap-1 rounded-xl p-1 m-2'>2</button>
+                <div className='flex  justify justify-between items-center h-2/3 w-full m-1 p-2  '>
+                    {
+                        buttons.map((key, indx) => (
+                            <div className='' key={indx}>
+                                {
+                                    key.map((btn, i) => (
+                                        <div className='' key={i}>
+                                            <button
+onClick={()=>buttonHandler(btn)}
+                                            className='bg-blue-700 p-1 m-1  w-20 hover:scale-110 transform transition duration-300 '>{btn}</button>
+                                        </div>
+                                    ))
+                                }
 
-                        </div>
-                        <div  className='flex justify-between'>
-                             <button className='bg-blue-800 w-1/3 gap-1 rounded-xl p-1 m-2'>3</button>
-                            <button className='bg-blue-800 w-1/3 gap-1 rounded-xl p-1 m-2'>4</button>
-                            <button className='bg-blue-800 w-1/3 gap-1 rounded-xl p-1 m-2'>5</button>
-
-
-                        </div>
-                        <div  className='flex justify-between'>
-                            <button className='bg-blue-800 w-1/3 gap-1 rounded-xl p-1 m-2'>6</button>
-                                 <button className='bg-blue-800 w-1/3 gap-1 rounded-xl p-1 m-2'>7</button>
-                            <button className='bg-blue-800 w-1/3 gap-1 rounded-xl p-1 m-2'>8</button>
-
-
-
-                        </div>
-                          <button className='bg-blue-800 w-1/3 gap-1 rounded-xl p-1 m-2'>9</button>
-                          <button className='bg-blue-800 w-1/3 gap-1 rounded-xl p-1 m-2' onClick={calculation}>Submit</button>
-
-                    </div>
-                    <div className='h-full w-1/3 bg-slate-800'>
-<button value={'+'} onClick={handleVal} className='bg-yellow-600 w-1/3 gap-1 rounded-xl p-1 m-2'>+</button>
-<button onClick={handleVal} value={"-"} className='bg-yellow-600 w-1/3 gap-1 rounded-xl p-1 m-2'>-</button>
-<button onClick={handleVal} value={"*"} className='bg-yellow-600 w-1/3 gap-1 rounded-xl p-1 m-2'>*</button>
-<button onClick={handleVal} value={"/"} className='bg-yellow-600 w-1/3 gap-1 rounded-xl p-1 m-2'>%</button>
-                    </div>
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
         </div>
